@@ -13,11 +13,11 @@ def test_relatorio_produto():
     )
 
     expected = (
-        f"O produto Nicotine Polacrilex"
-        f" fabricado em 2021-02-18"
-        f" por Target Corporation com validade"
-        f" até 2023-09-17"
-        f" precisa ser armazenado na geladeira."
+        f"O produto {result.nome_do_produto} "
+        f"fabricado em {result.data_de_fabricacao} "
+        f"por {result.nome_da_empresa} com validade "
+        f"até {result.data_de_validade} "
+        f"precisa ser armazenado {result.instrucoes_de_armazenamento}."
     )
 
     assert str(result) == expected
