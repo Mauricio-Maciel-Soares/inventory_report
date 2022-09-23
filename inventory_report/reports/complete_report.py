@@ -3,8 +3,8 @@ from collections import Counter
 
 
 class CompleteReport(SimpleReport):
-    def __init__(self, info):
-        super().__init__(info)
+    # def __init__(self, info):   ## não precisa porque simple não implementa
+    #     super().__init__(info)
 
     @staticmethod
     def generate(info):
@@ -16,7 +16,7 @@ class CompleteReport(SimpleReport):
 
         dictionary = Counter(company_name)
 
-        companies = ''
+        companies = ""
         for company, quantity in dictionary.items():
             companies += f"- {company}: {quantity}\n"
 
