@@ -3,6 +3,7 @@ from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.simple_report import SimpleReport
 import csv
 import json
+import xml.etree.ElementTree as ET
 
 
 class GenerateStrategy(ABC):  # Interface
@@ -40,8 +41,22 @@ class JsonStrategy(GenerateStrategy):
         else:
             return CompleteReport.generate(json_file)
 
-# class XlmStrategy(GenerateStrategy):
-#     @classmethod
-#     def read(cls, path, report):
-#         # Codigos específico do Bradesco (exemplo)
-#         print("Sucesso!")
+
+class XmlStrategy(GenerateStrategy):
+    @classmethod
+    def read_data(cls, path, report):
+        tree = ET.parse(path)
+        root = tree.getroot()
+        xml_file = []
+
+        for index in root:
+            dictionary = {}
+            for index2 in index:
+                dictionary[index2.tag] = index2.text
+            xml_file.append(dictionary)
+
+        if report == "simples":
+            return SimpleReport.generate(xml_file)
+
+        else:
+            return CompleteReport.generate(xml_file)

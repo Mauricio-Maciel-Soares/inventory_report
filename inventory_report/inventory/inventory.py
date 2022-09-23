@@ -1,5 +1,6 @@
 from inventory_report.importer.importer import CsvStrategy
 from inventory_report.importer.importer import JsonStrategy
+from inventory_report.importer.importer import XmlStrategy
 
 
 class Inventory:
@@ -16,3 +17,6 @@ class Inventory:
 
         if path.endswith(".json"):
             return Inventory(JsonStrategy).read_data(path, report)
+
+        if path.endswith(".xml"):
+            return Inventory(XmlStrategy).read_data(path, report)
