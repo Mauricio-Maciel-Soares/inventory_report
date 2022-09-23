@@ -1,4 +1,5 @@
 from inventory_report.importer.importer import CsvStrategy
+from inventory_report.importer.importer import JsonStrategy
 
 
 class Inventory:
@@ -12,3 +13,6 @@ class Inventory:
     def import_data(path, report):
         if path.endswith(".csv"):
             return Inventory(CsvStrategy).read_data(path, report)
+
+        if path.endswith(".json"):
+            return Inventory(JsonStrategy).read_data(path, report)
